@@ -1,0 +1,179 @@
+1. Request: GET http://127.0.0.1:5000/api/databases
+[
+    {
+        "Database": "information_schema"
+    },
+    {
+        "Database": "lahman2019clean"
+    },
+    {
+        "Database": "mysql"
+    },
+    {
+        "Database": "performance_schema"
+    },
+    {
+        "Database": "sys"
+    }
+]
+
+2. Request: GET http://127.0.0.1:5000/api/databases/lahman2019clean
+[
+    {
+        "Tables_in_lahman2019clean": "allstarfull"
+    },
+    {
+        "Tables_in_lahman2019clean": "appearances"
+    },
+    {
+        "Tables_in_lahman2019clean": "averageheight"
+    },
+    {
+        "Tables_in_lahman2019clean": "awardsmanagers"
+    },
+    {
+        "Tables_in_lahman2019clean": "awardsplayers"
+    },
+    {
+        "Tables_in_lahman2019clean": "awardssharemanagers"
+    },
+    {
+        "Tables_in_lahman2019clean": "awardsshareplayers"
+    },
+    {
+        "Tables_in_lahman2019clean": "batting"
+    },
+    {
+        "Tables_in_lahman2019clean": "battingpost"
+    },
+    {
+        "Tables_in_lahman2019clean": "collegeplaying"
+    },
+    {
+        "Tables_in_lahman2019clean": "fielding"
+    },
+    {
+        "Tables_in_lahman2019clean": "fieldingof"
+    },
+    {
+        "Tables_in_lahman2019clean": "fieldingofsplit"
+    },
+    {
+        "Tables_in_lahman2019clean": "fieldingpost"
+    },
+    {
+        "Tables_in_lahman2019clean": "halloffame"
+    },
+    {
+        "Tables_in_lahman2019clean": "homegames"
+    },
+    {
+        "Tables_in_lahman2019clean": "JOHNS"
+    },
+    {
+        "Tables_in_lahman2019clean": "managers"
+    },
+    {
+        "Tables_in_lahman2019clean": "managershalf"
+    },
+    {
+        "Tables_in_lahman2019clean": "parks"
+    },
+    {
+        "Tables_in_lahman2019clean": "people"
+    },
+    {
+        "Tables_in_lahman2019clean": "pitching"
+    },
+    {
+        "Tables_in_lahman2019clean": "pitchingpost"
+    },
+    {
+        "Tables_in_lahman2019clean": "salaries"
+    },
+    {
+        "Tables_in_lahman2019clean": "schools"
+    },
+    {
+        "Tables_in_lahman2019clean": "seriespost"
+    },
+    {
+        "Tables_in_lahman2019clean": "teams"
+    },
+    {
+        "Tables_in_lahman2019clean": "teamsfranchises"
+    },
+    {
+        "Tables_in_lahman2019clean": "teamshalf"
+    },
+    {
+        "Tables_in_lahman2019clean": "Test"
+    }
+]
+
+3. Request: GET http://127.0.0.1:5000/api/lahman2019clean/People/willite01
+{
+    "playerID": "willite01",
+    "birthYear": "1918",
+    "birthMonth": "8",
+    "birthDay": "30",
+    "birthCountry": "USA",
+    "birthState": "CA",
+    "birthCity": "San Diego",
+    "deathYear": "2002",
+    "deathMonth": "7",
+    "deathDay": "5",
+    "deathCountry": "USA",
+    "deathState": "FL",
+    "deathCity": "Inverness",
+    "nameFirst": "Ted",
+    "nameLast": "Williams",
+    "nameGiven": "Theodore Samuel",
+    "weight": 205,
+    "height": "75",
+    "bats": "L",
+    "throws": "R",
+    "debut": "1939-04-20",
+    "finalGame": "1960-09-28",
+    "retroID": "willt103",
+    "bbrefID": "willite01",
+    "birthDate": "1918-08-30 00:00:00",
+    "deathDate": "2002-07-05 00:00:00"
+}
+
+4. Request: GET http://127.0.0.1:5000/api/lahman2019clean/people/willite01?fields=nameLast,nameFirst
+{
+    "nameLast": "Williams",
+    "nameFirst": "Ted"
+}
+
+The following outputs contain some result from my own "Test" table created in lahman2019clean:
+nameFirst, nameLast, playerID, birthState
+'John','Butler','butlejo01','MA'
+'John','Walsh','walshjo02','PA'
+
+5. Request: DELETE http://127.0.0.1:5000/api/lahman2019clean/Test/butlejo01
+1
+
+6. Request: PUT http://127.0.0.1:5000/api/lahman2019clean/Test/walshjo02
+body: {
+        "birthState": "NY"
+      }
+1
+
+7. Request: POST http://127.0.0.1:5000/api/lahman2019clean/Test
+body: {
+	    "nameLast" : "Hudson",
+	    "nameFirst": "Aly",
+	    "PlayerID": "alh2202",
+	    "birthState": "OH"
+      }
+1
+
+8.  Request: GET http://127.0.0.1:5000/api/lahman2019clean/People?playerID=willite01&fields=birthYear,deathYear
+[
+    {
+        "birthYear": "1918",
+        "deathYear": "2002"
+    }
+]
