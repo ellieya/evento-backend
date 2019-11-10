@@ -5,10 +5,10 @@ import src.data_service.RDBDataTable as RDBDataTable
 _db_tables = {}
 
 _conn = pymysql.connect(
-    host="127.0.0.1",
+    host="us-cdbr-iron-east-05.cleardb.net",
     port=3306,
-    user="root",
-    password="Dennis971201",
+    user="bbb8ec09e5c036",
+    password="df70990e",
     cursorclass=pymysql.cursors.DictCursor
 )
 

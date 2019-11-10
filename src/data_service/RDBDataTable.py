@@ -20,9 +20,9 @@ class RDBDataTable:
     # specific connection on object creation.
 
     _default_connect_info = {
-        'host': '127.0.0.1',
-        'user': 'root',
-        'password': 'Dennis971201',
+        'host': 'us-cdbr-iron-east-05.cleardb.net',
+        'user': 'bbb8ec09e5c036',
+        'password': 'df70990e',
         'db': 'Evento',
         'port': 3306
     }
