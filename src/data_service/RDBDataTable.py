@@ -23,7 +23,7 @@ class RDBDataTable:
         'host': 'us-cdbr-iron-east-05.cleardb.net',
         'user': 'bbb8ec09e5c036',
         'password': 'df70990e',
-        'db': 'Evento',
+        'db': 'heroku_395a14423f2d0c2',
         'port': 3306
     }
 
