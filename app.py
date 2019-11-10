@@ -3,7 +3,7 @@
 # - Flask is the top-level application. You implement the application by adding methods to it.
 # - Response enables creating well-formed HTTP/REST responses.
 # - requests enables accessing the elements of an incoming HTTP/REST request.
-#
+
 from flask import Flask, Response, request
 from datetime import datetime
 from flask_cors import CORS
@@ -15,8 +15,6 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# The convention is that a compound primary key in a path has the elements sepatayed by "_"
-# For example, /batting/willite01_BOS_1960_1 maps to the primary key for batting
 _key_delimiter = "_"
 _host = "127.0.0.1"
 _port = 5000
@@ -28,7 +26,7 @@ def handle_args(args):
     """
 
     :param args: The dictionary form of request.args.
-    :return: The values removed from lists if they are in a list. This is flask weirdness.
+    :return: The values removed from lists if they are in a list.
         Sometimes x=y gets represented as {'x': ['y']} and this converts to {'x': 'y'}
     """
 
@@ -115,7 +113,7 @@ def generate_error(status_code, ex=None, msg=None):
 
     if status_code == 500:
         if msg is None:
-            msg = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+            msg = "INTERNAL SERVER ERROR."
 
         rsp = Response(msg, status=status_code, content_type="text/plain")
 

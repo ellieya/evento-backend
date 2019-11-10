@@ -2,15 +2,6 @@ import pymysql
 import logging
 logger = logging.getLogger()
 
-#########################################
-#
-#
-# YOU DO NOT HAVE TO CHANGE THIS FILE IN ANY WAY. THIS IS TO MAKE YOUR IMPLEMENTATION SIMPLER.
-#
-#
-#
-#########################################
-
 
 def get_connection(connect_info):
     """
@@ -35,10 +26,7 @@ def run_q(sql, args=None, fetch=True, cur=None, conn=None, commit=True):
     :param args: Values to pass with statement. May be null.
     :param fetch: Execute a fetch and return data if TRUE.
     :param conn: The database connection to use. This cannot be NULL, unless a cursor is passed.
-        DO NOT PASS CURSORS for HW1.
     :param cur: The cursor to use. This is wizard stuff. Do not worry about it for now.
-        DO NOT PASS CURSORS for HW1.
-    :param commit: This is wizard stuff. Do not worry about it.
 
     :return: A pair of the form (execute response, fetched data). There will only be fetched data if
         the fetch parameter is True. 'execute response' is the return from the connection.execute, which
@@ -113,9 +101,6 @@ def create_select(table_name, template, fields=None, order_by=None, limit=None, 
     :param table_name: Table name: May be fully qualified dbname.tablename or just tablename.
     :param fields: Columns to select (an array of column name)
     :param template: One of Don Ferguson's weird JSON/python dictionary templates.
-    :param order_by: Ignore for now.
-    :param limit: Ignore for now.
-    :param offset: Ignore for now.
     :return: A tuple of the form (sql string, args), where the sql string is a template.
     """
 

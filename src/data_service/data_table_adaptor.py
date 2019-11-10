@@ -2,13 +2,10 @@ import pymysql
 import src.data_service.dbutils as dbutils
 import src.data_service.RDBDataTable as RDBDataTable
 
-# The REST application server app.py will be handling multiple requests over a long period of time.
-# It is inefficient to create an instance of RDBDataTable for each request.  This is a cache of created
-# instances.
 _db_tables = {}
 
 _conn = pymysql.connect(
-    host="localhost",
+    host="127.0.0.1",
     port=3306,
     user="root",
     password="Dennis971201",
@@ -47,7 +44,6 @@ def get_rdb_table(table_name, db_name, key_columns=None, connect_info=None):
 
 def get_databases():
     """
-
     :return: A list of databases/schema at this endpoint.
     """
 

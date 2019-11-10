@@ -1,26 +1,8 @@
-
-
-#########################################################
-#
-#
-# YOU HAVE TO IMPLEMENT SOME METHODS FROM THIS FILE, BUT MOST OF THE FILE
-# IS JUST THE SOLUTION TO THE HW1 RDBDataTable SECTION.
-#
-# LOOK FOR --TO IMPLEMENT-- TO FIND THE FUNCTIONS/METHODS YOU NEED TO IMPLEMENT.
-#
-# ALSO, SEE THINGS OF THE FORM -- THANK ALY AND ARA --
-#
-#########################################################
-
-# Pandas is only used to pretty print the table contents.
 import pandas as pd
 import pymysql
 import json
-
-# The helper functions from homework 1 are in this file. The RDBDataTable code below calls the functions.
 import src.data_service.dbutils as dbutils
 
-# You do not need to do anything about the logging stuff. You can just ignore, or you can use if you want.
 import logging
 logger = logging.getLogger()
 
@@ -32,15 +14,13 @@ pd.set_option('display.max_columns', 12)
 class RDBDataTable:
     """
     RDBDataTable is relation DB implementation of the BaseDataTable.
-    I have removed the dependency/subclassing from BaseDataTable to reduce confusion.
     """
 
     # Default connection information in case the code does not pass an object
     # specific connection on object creation.
-    #
-    # NOTE: You may just use the default connector if you want.
+
     _default_connect_info = {
-        'host': 'localhost',
+        'host': '127.0.0.1',
         'user': 'root',
         'password': 'Dennis971201',
         'db': 'Evento',
@@ -65,8 +45,7 @@ class RDBDataTable:
         # Initialize and store information in the parent class.
         super().__init__()
 
-        # If there is not explicit connect information, use the defaults.
-        # You can use the default.
+
         if connect_info is None:
             self._connect_info = RDBDataTable._default_connect_info
         else:
@@ -79,9 +58,6 @@ class RDBDataTable:
         self._sample_rows = None
         self._related_resources = None
         self._columns = None
-
-        # Create a connection to use inside this object. In general, this is not the right approach.
-        # There would be a connection pool shared across many classes and applications.
         self._cnx = pymysql.connect(
             host=self._connect_info['host'],
             user=self._connect_info['user'],
@@ -92,10 +68,6 @@ class RDBDataTable:
 
         if db_name is None or table_name is None:
             raise ValueError("You MUST pass a database name and table name.")
-
-        """
-        You should implement these methods. See the implementation templates below.
-        """
         self._key_columns = self.get_primary_key_columns()
         self._row_count = self.get_row_count()
 
@@ -178,9 +150,6 @@ class RDBDataTable:
 
         :param template: A dictionary of the form { "field1" : value1, "field2": value2, ...}
         :param field_list: A list of request fields of the form, ['fielda', 'fieldb', ...]
-        :param limit: Do not worry about this for now.
-        :param offset: Do not worry about this for now.
-        :param order_by: Do not worry about this for now.
         :return: A list containing dictionaries. A dictionary is in the list representing each record
             that matches the template. The dictionary only contains the requested fields.
         """
@@ -215,7 +184,6 @@ class RDBDataTable:
     def delete_by_key(self, key_fields):
 
         # Get the key_columns specified on table create.
-        # Later on, we will learn how to get the information from the schema in the DB.
         key_columns = self._key_columns
 
         # Zipping together key_columns and passed fields produces a valid template
@@ -251,7 +219,6 @@ class RDBDataTable:
     def update_by_key(self, key_fields, new_values):
 
         # Get the key_columns specified on table create.
-        # Later on, we will learn how to get the information from the schema in the DB.
         key_columns = self._key_columns
 
         # Zipping together key_columns and passed fields produces a valid template
